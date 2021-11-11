@@ -326,8 +326,3 @@ sum_ages_45_90 <- merge(sum_ages_45_69, sum_ages_70_90, by = "date")
 sum_all_ages <- merge(sum_ages_0_44, sum_ages_45_90, by ="date")
 
 write.csv(sum_all_ages, file="raw-data/cases_by_age.csv")
-
-
-install.packages("usethis")
-
-usethis::create_package(path = "covid-automation")
