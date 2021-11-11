@@ -68,6 +68,11 @@ jobs:
         run: |
           source("R/casesandhospital.R")
         shell: Rscript {0}
+        
+      - name: Generate data
+        run: |
+          source("R/lacaserates.R")
+        shell: Rscript {0}
 
       - name: Commit files
         run: |
