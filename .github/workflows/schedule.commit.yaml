@@ -73,6 +73,11 @@ jobs:
         run: |
           source("R/lacaserates.R")
         shell: Rscript {0}
+        
+      - name: Generate data
+        run: |
+          source("R/vaccinations.R")
+        shell: Rscript {0}
 
       - name: Commit files
         run: |
