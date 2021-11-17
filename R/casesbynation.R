@@ -117,6 +117,8 @@ wales_average <- wales_average %>%
     wales_daily_cases = daily_cases
   )
 
+wales_average <- filter(wales_average, date!="2020-12-17")
+
 englandandwales <- merge(england_average, wales_average, by ="date")
 
 scotland_average <- scotland %>%
