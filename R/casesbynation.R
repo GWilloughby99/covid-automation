@@ -94,7 +94,7 @@ scotland <- filter(cases_nations, name =="Scotland")
 northern_ireland <- filter(cases_nations, name =="Northern Ireland")
 
 
-#Calculating rates for England and Wales and then merging them together
+#Calculating rates for UK nation
 england_average <- england %>%
   dplyr::mutate(england_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
 
@@ -105,6 +105,8 @@ england_average <- england_average %>%
   rename(
     england_daily_cases = daily_cases
   )
+
+write.csv(england_average, file="raw-data/england_cases.csv")
  
 wales_average <- wales %>%
   dplyr::mutate(wales_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
@@ -117,9 +119,9 @@ wales_average <- wales_average %>%
     wales_daily_cases = daily_cases
   )
 
-wales_average <- filter(wales_average, date!="2020-12-17")
+wales_average <- wales_average[wales_average$wales_daily_cases != 0, ]
 
-englandandwales <- merge(england_average, wales_average, by ="date")
+write.csv(wales_average, file="raw-data/wales_cases.csv")
 
 scotland_average <- scotland %>%
   dplyr::mutate(scotland_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
@@ -131,6 +133,9 @@ scotland_average <- scotland_average %>%
   rename(
     scotland_new_cases = daily_cases
   )
+scotland_average <- filter(scotland_average, date!="2021-09-16")
+
+write.csv(scotland_average, file="raw-data/scotland_cases.csv")
 
 northern_ireland_average <- northern_ireland %>%
   dplyr::mutate(northern_ireland_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
@@ -143,8 +148,6 @@ northern_ireland_average <- northern_ireland_average %>%
     northern_ireland_new_cases = daily_cases
   )
 
-scotlandandnorthernireland <- merge(scotland_average, northern_ireland_average, by ="date")
+northern_ireland_average <- northern_ireland_average[northern_ireland_average$northern_ireland_new_cases !=0, ]
 
-all_nations <- merge(englandandwales, scotlandandnorthernireland, by="date")
-
-write.csv(all_nations, file="raw-data/cases_nations.csv")
+write.csv(northern_ireland_new_cases, file="raw-data/northern_ireland_cases.csv")
