@@ -4,6 +4,7 @@ library(dplyr)
 library(zoo)
 library(remotes)
 library(tidyverse)
+library(lubridate)
 
 #' Extracts paginated data by requesting all of the pages
 #' and combining the results.
@@ -93,3 +94,20 @@ vaccinations <- vaccinations %>%
   )
 
 write.csv(vaccinations, file="raw-data/vaccinations.csv")
+
+#Filtering for different time periods
+
+last_month = lubridate::today() - days(30)
+last_three_months = lubridate::today() - days(90)
+last_six_months = lubridate::today() - days(180)
+last_year = lubridate::today() - days(365)
+
+vaccinations_last_month <- subset(vaccinations, vaccinations$date >= last_month & vaccinations$date <= today())
+vaccinations_last_three_months <- subset(vaccinations, vaccinations$date >= last_three_months & vaccinations$date <= today())
+vaccinations_last_six_months <- subset(vaccinations, vaccinations$date >= last_six_months & vaccinations$date <= today())
+vaccinations_last_year<- subset(vaccinations, vaccinations$date >= last_year & vaccinations$date <= today())
+
+write.csv(vaccinations_last_month, file="raw-data/vaccines_last_month.csv")
+write.csv(vaccinations_last_three_months, file="raw-data/vaccines_last_three_months.csv")  
+write.csv(vaccinations_last_six_months, file="raw-data/vaccines_last_six_months.csv")  
+write.csv(vaccinations_last_year, file="raw-data/vaccines_last_year.csv") 
