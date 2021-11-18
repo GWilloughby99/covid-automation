@@ -150,4 +150,4 @@ northern_ireland_average <- northern_ireland_average %>%
 
 northern_ireland_average <- northern_ireland_average[northern_ireland_average$northern_ireland_new_cases !=0, ]
 
-write.csv(northern_ireland_new_cases, file="raw-data/northern_ireland_cases.csv")
+write.csv(northern_ireland_average, file="raw-data/northern_ireland_cases.csv")
