@@ -106,8 +106,6 @@ england_average <- england_average %>%
     england_daily_cases = daily_cases
   )
 
-write.csv(england_average, file="raw-data/england_cases.csv")
- 
 wales_average <- wales %>%
   dplyr::mutate(wales_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
 
@@ -121,8 +119,6 @@ wales_average <- wales_average %>%
 
 wales_average <- wales_average[wales_average$wales_daily_cases != 0, ]
 
-write.csv(wales_average, file="raw-data/wales_cases.csv")
-
 scotland_average <- scotland %>%
   dplyr::mutate(scotland_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
 
@@ -133,9 +129,8 @@ scotland_average <- scotland_average %>%
   rename(
     scotland_new_cases = daily_cases
   )
-scotland_average <- filter(scotland_average, date!="2021-09-16")
 
-write.csv(scotland_average, file="raw-data/scotland_cases.csv")
+scotland_average <- filter(scotland_average, date!="2021-09-16")
 
 northern_ireland_average <- northern_ireland %>%
   dplyr::mutate(northern_ireland_seven_day_average = zoo::rollmean(daily_cases, k = 7, align="left", fill = NA))
@@ -150,4 +145,7 @@ northern_ireland_average <- northern_ireland_average %>%
 
 northern_ireland_average <- northern_ireland_average[northern_ireland_average$northern_ireland_new_cases !=0, ]
 
+write.csv(england_average, file="raw-data/england_cases.csv")
+write.csv(wales_average, file="raw-data/wales_cases.csv")
 write.csv(northern_ireland_average, file="raw-data/northern_ireland_cases.csv")
+write.csv(scotland_average, file="raw-data/scotland_cases.csv")
