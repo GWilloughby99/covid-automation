@@ -191,7 +191,8 @@ latest_upper_authority <- subset(latest_upper_authority, latest_upper_authority$
 #bind
 cases_all_authorities <- rbind(latest_lower_authority, latest_upper_authority)
 
-cases_all_authorities %>% distinct()
+cases_all_authorities <- cases_all_authorities %>% 
+  distinct()
 
 # Calculating the rate per 100k for the local authorities in England
 
