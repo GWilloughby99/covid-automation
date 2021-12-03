@@ -88,6 +88,11 @@ jobs:
         run: |
           source("R/casesbynation.R")
         shell: Rscript {0}
+        
+      - name: Generate data
+        run: |
+          source("R/casesglobal.R")
+        shell: Rscript {0}
 
       - name: Commit files
         run: |
