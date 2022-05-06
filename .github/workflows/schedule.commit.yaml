@@ -76,22 +76,12 @@ jobs:
         
       - name: Generate data
         run: |
-          source("R/vaccinations.R")
-        shell: Rscript {0}
-        
-      - name: Generate data
-        run: |
-          source("R/deaths.R")
-        shell: Rscript {0}
-        
-      - name: Generate data
-        run: |
-          source("R/casesbynation.R")
-        shell: Rscript {0}
-        
-      - name: Generate data
-        run: |
           source("R/casesglobal.R")
+        shell: Rscript {0}
+        
+      - name: Generate data
+        run: |
+          source("R/small_boats.R")
         shell: Rscript {0}
 
       - name: Commit files
