@@ -71,17 +71,7 @@ jobs:
         
       - name: Generate data
         run: |
-          source("R/lacaserates.R")
-        shell: Rscript {0}
-        
-      - name: Generate data
-        run: |
           source("R/casesglobal.R")
-        shell: Rscript {0}
-        
-      - name: Generate data
-        run: |
-          source("R/small_boats.R")
         shell: Rscript {0}
 
       - name: Commit files
